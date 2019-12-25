@@ -1,0 +1,27 @@
+int i;
+
+TreeNode* build(vector<int> &A, vector<int> &B,int s,int e) {
+    int index;
+    
+    if(s>e) return NULL;
+    
+    TreeNode* root=new TreeNode(A[i++]);
+    
+    for(int j=s;j<=e;j++) {
+        if(root->val==B[j]) {
+            index=j;
+            break;
+        }
+    }
+    
+    root->left=build(A,B,s,index-1);
+    root->right=build(A,B,index+1,e);
+    
+    return root;
+}
+
+TreeNode* Solution::buildTree(vector<int> &A, vector<int> &B) {
+    int n=A.size();
+    i=0;
+    return build(A,B,0,n-1);
+}
